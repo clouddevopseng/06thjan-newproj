@@ -1,11 +1,11 @@
 node {
-    stage('Download code from git repo') {
-    git branch: 'dev', url: 'https://github.com/clouddevopseng/nep.git'
-                                         }
-    stage('Convert into artifacts') {
-    sh 'mvn package'
-                                         }
-    stage('Deploy into Container') {
-    deploy adapters: [tomcat9(credentialsId: 'dev-ENV', path: '', url: 'http://172.31.1.31:8080')], contextPath: '/scripting-app', war: '**/*.war'
-                                         }
-}
+stage('Download') {
+        git branch: 'test', url: 'https://github.com/clouddevopseng/06thjan-newproj.git'
+                  {
+stage('Artifacts') {
+        sh 'mvn package'
+                   }
+stage('Deployment') {
+    deploy adapters: [tomcat9(credentialsId: '38c4c625-1cd6-4925-9c7e-c677d4d0b324', path: '', url: 'http://13.201.57.145:8080')], contextPath: '/test-apps', war: '**/*.war'
+                    }
+     }
